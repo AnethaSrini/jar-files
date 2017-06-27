@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+
+<suite name = "suite1" verbose = "1">
+<test name = "Testing1">
+<parameter name = "adminid" value = "Iam adm	in from xml"/>
+<groups>
+<run>
+<include name ="Priority1" />
+</run>
+</groups>
+<classes>
+<class name = "Testngfiles.suites">
+</class>
+<class name = "Testngfiles.Annotations">
+</class>
+</classes>
+</test>
+</suite> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?xml version="1.0"?>
+
+<suite name = "suite1" verbose = "1">
+<test name = "Testing1">
+<parameter name = "adminid" value = "Iam adm	in from xml"/>
+<classes>
+<class name = "Testngfiles.suites">
+</class>
+<class name = "Testngfiles.Annotations">
+</class>
+</classes>
+</test>
+</suite> 
+
+
+
+
+
+
+
+
+
+
+
+package Testngfiles;
+
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
+
+public class Annotations {
+
+	@Test(dataProvider = "getData1")
+public void OpenBrowser(String unam,String pwd)
+
+{
+	System.out.println("Openingbrowse(Test1)");
+	System.out.println(unam);
+	System.out.println(pwd);
+}
+@BeforeTest
+
+public void Clearcookies()
+
+{
+	System.out.println("Clear cookies, (Before Test)");
+}
+
+@AfterTest
+
+ public void CloseBrowser()
+{
+	System.out.println("Closing Browser (After Test");
+}
+
+
+@BeforeMethod
+public void useridgen()
+{
+	System.out.println("USer Id Generation (Before Method");
+}
+@AfterMethod
+public void Report()
+{
+	System.out.println("Reports after each test (After Method");
+}
+
+@Test (dependsOnMethods=("OpenBrowser"))
+public void FlightBooking()
+{
+	System.out.println("Flight Booking (test2");
+}
+
+@Test(groups=("Priority1"))
+
+public void Flightcancel()
+{
+	System.out.println("Flight cancel (test3");
+	
+}
+@Test
+@DataProvider
+public Object[][] getData1()
+
+
+{
+	//i represents number of times test should run
+	//j represents no of parameters sendfor one go
+	System.out.println("I am object getdata");	
+	Object[][] data1 = new Object[2][2]; 
+	data1[0][0] = "user1";
+	data1[0][1]	="passwd1";
+	data1[1][0] = "user2";
+	data1[1][1]	="passwd2";
+	return data1;
+}
+
+@Test
+@Parameters("adminid")
+public void Flightdelay( String id)
+
+{
+	System.out.println("Flight delay (test4");
+	System.out.println(id);
+	
+}
+
+
+@BeforeClass
+
+public void beforeclass()
+{
+	System.out.println("beforeclass annotation1");
+}
+
+
+
+@AfterClass
+
+public void afterclass()
+{
+	System.out.println("Afterclass annotation1");
+}
+
+
+}
+
+class Annotations2
+{
+	
+@Test
+	public void class2()
+	{
+	System.out.println("Class2 Annotations @test");
+	}
+	
+	@BeforeClass
+
+	public void beforeclass()
+	{
+		System.out.println("beforeclass annotation2 1");
+	}
+
+	@BeforeClass
+
+	public void beforeclass2()
+	{
+		System.out.println("Beforeclass annotation2 2");
+	}
+
+	
+	@AfterClass
+
+	public void afterclass()
+	{
+		System.out.println("Afterclass annotation2");
+	}
+	}
+
+ class suites
+{
+	 @BeforeSuite
+	 public void beforesuite1()
+	 {
+		 System.out.println("BeforeSuite1");
+		 
+	 }
+	 @BeforeSuite
+	 public void beforesuite2()
+	 {
+		 System.out.println("BeforeSuite2");
+		 
+	 }
+	 
+	 @AfterSuite
+	 public void aftersuite1()
+	 {
+		 System.out.println("afterSuite1");
+		 
+	 }
+	 @AfterSuite
+	 public void aftersuite2()
+	 {
+		 System.out.println("afterSuite2");
+		 
+	 }
+
+
+
+}
+
